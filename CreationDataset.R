@@ -1,15 +1,9 @@
-#Kindergarden without aide
+#First graders without aide
 STAR_Students<-NULL
 STAR_Students <- read.delim("C:/Users/Aliba/Dropbox/0_Uni (Privat)/Master Thesis/Data/STAR_Students_Full_Dataset.txt", 
                   as.is=TRUE, na.strings=c(NA,"NA", " NA"))
 
-#Delete NA of Kindergarten
-STAR_Students1<-NULL
-#STAR_Students1<-subset(STAR_Students, g1treadss>0 & race>0 & g1tmathss<0)
-#View(STAR_Students1)
-
-
-#Create variables for Kindergarten
+#Create variables for first graders
 STAR_G1<-NULL
 STAR_G1$stdntid<-STAR_Students$stdntid
 STAR_G1$flagsg1<-STAR_Students$flagsg1
@@ -38,14 +32,13 @@ STAR_G1$list<-STAR_Students$g1tlistss
 #View(STAR_G1)
 write.csv(STAR_G1, file="STAR_G1.csv")
 
-#omit na
+#omit na (necessary step in order do clean for the na properly)
 STAR_G1<-NULL
 STAR_G1 <- read.csv("C:/Users/Aliba/Documents/STAR_G1.csv", na.strings=c(NA,"NA", " NA"))
 STAR_G1_clean<-na.omit(STAR_G1)
 
 #eliminate aide class
 STAR_G1_clean<-STAR_G1_clean[!(STAR_G1_clean$g1classtype=="3"),]
-
 
 #Combine birthyear and birthmonth: Divide by 13 to get months in terms of years
 STAR_G1_clean$birth<-NULL
