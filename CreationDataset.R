@@ -1,6 +1,7 @@
 #Kindergarden without aide
 STAR_Students<-NULL
-STAR_Students <- read.delim("C:/Users/Aliba/Dropbox/0_Uni (Privat)/Master Thesis/Data/STAR_Students_Full_Dataset.txt", as.is=TRUE, na.strings=c(NA,"NA", " NA"))
+STAR_Students <- read.delim("C:/Users/Aliba/Dropbox/0_Uni (Privat)/Master Thesis/Data/STAR_Students_Full_Dataset.txt", 
+                  as.is=TRUE, na.strings=c(NA,"NA", " NA"))
 
 #Delete NA of Kindergarten
 STAR_Students1<-NULL
@@ -55,10 +56,14 @@ STAR_G1_clean$g1classtype<-with(STAR_G1_clean, g1classtype-1)
 
 #Create ground truth
 MeanSmallClass_G1<-mean(STAR_G1_clean$g1classtype)
-STAR_G1_clean$g1treadss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$read,1/MeanSmallClass_G1*STAR_G1_clean$read)
-STAR_G1_clean$g1tmathss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$math,1/MeanSmallClass_G1*STAR_G1_clean$math)
-STAR_G1_clean$g1tlistss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$list,1/MeanSmallClass_G1*STAR_G1_clean$list)
-STAR_G1_clean$g1wordskillss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$lang,1/MeanSmallClass_G1*STAR_G1_clean$lang)
+STAR_G1_clean$g1treadss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$read,
+                                  1/MeanSmallClass_G1*STAR_G1_clean$read)
+STAR_G1_clean$g1tmathss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$math,
+                                  1/MeanSmallClass_G1*STAR_G1_clean$math)
+STAR_G1_clean$g1tlistss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$list,
+                                  1/MeanSmallClass_G1*STAR_G1_clean$list)
+STAR_G1_clean$g1wordskillss_1<-ifelse(STAR_G1_clean$g1classtype>0,-1/(1-MeanSmallClass_G1)*STAR_G1_clean$lang,
+                                  1/MeanSmallClass_G1*STAR_G1_clean$lang)
 
 STAR_G1_clean$read_2<-STAR_G1_clean$g1treadss_1
 STAR_G1_clean$math_2<-STAR_G1_clean$g1tmathss_1
